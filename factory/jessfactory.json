@@ -1,0 +1,9 @@
+{
+	"name": "jessfactory",
+	"location": "uksouth",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "040305ee-80e3-4dda-8d78-5419b3d11092",
+		"tenantId": "6e0eb70b-408a-43a1-aa52-49b6ae58286b"
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"name": "look_upjson",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_datalake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "lookup_stream.json",
+				"folderPath": "LookUp_Folder",
+				"fileSystem": "bronze"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"p_url": {
+					"type": "string"
+				},
+				"p_folder": {
+					"type": "string"
+				},
+				"p_file": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
