@@ -1,0 +1,16 @@
+id: 0aa94a6b-f1e1-4ddc-b96b-dd023f2dedc4
+pipeline_type: WORKSPACE
+name: Silver_Pipeline
+libraries:
+  - glob:
+      include: /Workspace/Users/jessepepple36@gmail.com/Silver_Pipeline/transformations/**
+  - glob:
+      include: /Workspace/Users/jessepepple36@gmail.com/Silver_Pipeline/utilities/utils.py
+schema: silver
+continuous: false
+development: false
+photon: true
+channel: CURRENT
+catalog: realtime_project
+serverless: true
+root_path: /Workspace/Users/jessepepple36@gmail.com/Silver_Pipeline

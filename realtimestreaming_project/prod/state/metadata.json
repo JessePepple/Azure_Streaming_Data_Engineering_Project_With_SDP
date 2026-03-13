@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "config": {
+    "bundle": {
+      "name": "realtimestreaming_project",
+      "target": "prod",
+      "mode": "production",
+      "git": {
+        "branch": "main",
+        "origin_url": "https://github.com/JessePepple/Azure_Streaming_Data_Engineering_Project_With_SDP.git",
+        "commit": "c91205cd2dd62cdb2eb737ded45d5e99f43bbe8e",
+        "bundle_root_path": "realtimestreaming_project"
+      }
+    },
+    "workspace": {
+      "file_path": "/Workspace/Users/jessepepple36@gmail.com/.bundle/realtimestreaming_project/prod/files"
+    },
+    "resources": {},
+    "presets": {
+      "source_linked_deployment": false
+    }
+  },
+  "extra": {
+    "git_folder_path": "/Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP"
+  }
+}
