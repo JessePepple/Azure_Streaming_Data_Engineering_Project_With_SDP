@@ -1,0 +1,14 @@
+id: 567158ba-7c69-47f6-81b8-6779e5ee6755
+pipeline_type: WORKSPACE
+name: Gold_Pipeline
+libraries:
+  - glob:
+      include: /Workspace/Users/jessepepple36@gmail.com/Gold_Pipeline/transformations/**
+schema: gold
+continuous: false
+development: false
+photon: true
+channel: CURRENT
+catalog: realtime_project
+serverless: true
+root_path: /Workspace/Users/jessepepple36@gmail.com/Gold_Pipeline
