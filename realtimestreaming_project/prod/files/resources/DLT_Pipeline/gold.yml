@@ -1,9 +1,9 @@
-id: 567158ba-7c69-47f6-81b8-6779e5ee6755
+id: de29ae96-09bb-4ab7-958d-73c0758feffe
 pipeline_type: WORKSPACE
-name: Gold_Pipeline
+name: Gold_Pipeline_
 libraries:
   - glob:
-      include: /Workspace/Users/jessepepple36@gmail.com/Gold_Pipeline/transformations/**
+      include: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Gold_Pipeline_/transformations/**
 schema: gold
 continuous: false
 development: false
@@ -11,4 +11,4 @@ photon: true
 channel: CURRENT
 catalog: realtime_project
 serverless: true
-root_path: /Workspace/Users/jessepepple36@gmail.com/Gold_Pipeline
+root_path: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Gold_Pipeline_/transformations

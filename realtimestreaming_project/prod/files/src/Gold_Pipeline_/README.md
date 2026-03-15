@@ -1,6 +1,6 @@
-# Gold_Pipeline
+# Gold_Pipeline_
 
-This folder defines all source code for the 'Gold_Pipeline' pipeline:
+This folder defines all source code for the 'Gold_Pipeline_' pipeline:
 
 - `explorations`: Ad-hoc notebooks used to explore the data processed by this pipeline.
 - `transformations`: All dataset definitions and transformations.

@@ -1,0 +1,41 @@
+resources:
+  jobs:
+    Real_Time_Streaming_Pipeline:
+      name: Real_Time_Streaming_Pipeline
+      email_notifications:
+        on_start:
+          - jessepepple36@gmail.com
+        on_failure:
+          - jessepepple36@gmail.com
+      tasks:
+        - task_key: Silver_Pipeline
+          pipeline_task:
+            pipeline_id: fa2502c2-ce3d-4e87-9497-942f30354218
+            full_refresh: false
+        - task_key: Gold_Pipeline
+          depends_on:
+            - task_key: Silver_Pipeline
+          pipeline_task:
+            pipeline_id: de29ae96-09bb-4ab7-958d-73c0758feffe
+            full_refresh: false
+        - task_key: LookUp_Param
+          depends_on:
+            - task_key: Gold_Pipeline
+          notebook_task:
+            notebook_path: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Write_To_Data_Lake_Jobs/Gold_Config
+            source: WORKSPACE
+        - task_key: Write_To_Data_Lake
+          depends_on:
+            - task_key: LookUp_Param
+          for_each_task:
+            inputs: "{{tasks.LookUp_Param.values.parameters}}"
+            task:
+              task_key: Write_To_Data_Lake_iteration
+              notebook_task:
+                notebook_path: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Write_To_Data_Lake_Jobs/Write_To_Gold
+                base_parameters:
+                  table_name: "{{input.table_name}}"
+                source: WORKSPACE
+      queue:
+        enabled: true
+      performance_target: PERFORMANCE_OPTIMIZED

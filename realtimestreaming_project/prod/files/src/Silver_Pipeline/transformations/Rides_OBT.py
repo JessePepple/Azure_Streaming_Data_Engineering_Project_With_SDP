@@ -1,3 +1,4 @@
+
 from pyspark import pipelines as dp
 from pyspark.sql.functions import *
 
@@ -42,6 +43,12 @@ def bulk_rides_stg():
 def bulk_rides_transformation():
 
     df_bulk_rides = spark.readStream.table("bulk_rides_stg")
+    df_map_cancellations = spark.read.format("parquet").option("inferSchema", "true").load("abfss://bronze@realtimejess.dfs.core.windows.net/Map_Cancellation_Reasons_Staging")
+    df_map_cities = spark.read.format("parquet").option("inferSchema", "true").load("abfss://bronze@realtimejess.dfs.core.windows.net/Map_Cities_Staging")
+    df_map_ride_status = spark.read.format("parquet").option("inferSchema", "true").load("abfss://bronze@realtimejess.dfs.core.windows.net/Map_Ride_Statuses_Staging")
+    df_map_payments = spark.read.format("parquet").option("inferSchema", "true").load("abfss://bronze@realtimejess.dfs.core.windows.net/Map_Payment_Methods_Staging")
+    df_map_vehicles = spark.read.format("parquet").option("inferSchema", "true").load("abfss://bronze@realtimejess.dfs.core.windows.net/Map_Vehicle_Makes_Staging")
+    df_map_vehicle_types = spark.read.format("parquet").option("inferSchema", "true").load("abfss://bronze@realtimejess.dfs.core.windows.net/Map_Vehicle_Types_Staging")
 
     Bulk_Rides = SilverTransformation(df_bulk_rides)
 
@@ -64,15 +71,24 @@ def bulk_rides_transformation():
         "payment_method_id"
     ])
     df_bulk_rides = Bulk_Rides.drop_data("_rescued_data")
+
+    df_bulk_rides = df_bulk_rides.alias("r").join(df_map_cancellations.alias("m"), col("r.cancellation_reason_id") == col("m.cancellation_reason_id"), "left")\
+   .join(df_map_payments.alias("p"), col("r.payment_method_id") == col ("p.payment_method_id"), "left")\
+    .join(df_map_vehicle_types.alias("mv"), col("r.vehicle_type_id")== col("mv.vehicle_type_id"), "left")\
+    .join(df_map_vehicles.alias("v"), col("r.vehicle_make_id")== col("v.vehicle_make_id"), "left")\
+    .join(df_map_ride_status.alias("rs"), col("r.ride_status_id") == col("rs.ride_status_id"), "left")\
+    .select("r.*", "m.cancellation_reason", "p.payment_method", "p.is_card", "p.requires_auth", "mv.vehicle_type", "mv.description", "mv.base_rate", "mv.per_mile", "mv.per_minute", "v.vehicle_make", "rs.ride_status", "rs.is_completed") 
+    df_bulk_rides = df_bulk_rides.withColumn("base_rate_flag", when(col("base_rate")>=3, "High Booking").otherwise("Standard_Booking"))
+    
     return df_bulk_rides
 
-dp.create_streaming_table(name="bulk_rides_enr",comment= "Merge For Silver Layer Data",
+dp.create_streaming_table(name="bulk_rides_obt",comment= "Merge For Silver Layer Data",
 table_properties={
         "pipelines.autoOptimize.zOrderCols": "ride_id"
     })
 
 dp.create_auto_cdc_flow(
-    target = "bulk_rides_enr",
+    target = "bulk_rides_obt",
     source = "bulk_rides_transformation",
     keys = ["ride_id"],
   sequence_by = "last_updated_timestamp",
@@ -82,16 +98,13 @@ dp.create_auto_cdc_flow(
 
 @dp.view()
 def write_silver_to_adls():
-    df = spark.read.table("realtime_project.silver.bulk_rides_enr")
+    df = spark.read.table("realtime_project.silver.bulk_rides_obt")
 
     (df.write
         .format("delta")
         .mode("overwrite")
         .option("overwriteSchema", "true")
         .save("abfss://silver@realtimejess.dfs.core.windows.net/"
-              "Bulk_Rides_folder/Bulk_Rides_Data")
+              "Bulk_Rides_OBT/Bulk_Rides_OBT_Data")
     )
     return df
-
-
-
