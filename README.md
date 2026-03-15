@@ -1,2 +1,0 @@
-# Azure_Streaming_Data_Engineering_Project_With_SDP
-
