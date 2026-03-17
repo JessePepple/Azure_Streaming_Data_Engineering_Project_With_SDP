@@ -22,7 +22,7 @@ resources:
           depends_on:
             - task_key: Gold_Pipeline
           notebook_task:
-            notebook_path: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Write_To_Data_Lake_Jobs/Gold_Config
+            notebook_path: ../../src/Write_To_Data_Lake_Jobs/Gold_Config.ipynb
             source: WORKSPACE
         - task_key: Write_To_Data_Lake
           depends_on:
@@ -32,7 +32,7 @@ resources:
             task:
               task_key: Write_To_Data_Lake_iteration
               notebook_task:
-                notebook_path: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Write_To_Data_Lake_Jobs/Write_To_Gold
+                notebook_path: ../../src/Write_To_Data_Lake_Jobs/Write_To_Gold
                 base_parameters:
                   table_name: "{{input.table_name}}"
                 source: WORKSPACE
