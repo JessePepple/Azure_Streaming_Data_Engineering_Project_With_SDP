@@ -3,7 +3,7 @@ pipeline_type: WORKSPACE
 name: Gold_Pipeline_
 libraries:
   - glob:
-      include: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Gold_Pipeline_/transformations/**
+      include: ../../src/Gold_Pipeline_/transformations/**
 schema: gold
 continuous: false
 development: false
@@ -11,4 +11,4 @@ photon: true
 channel: CURRENT
 catalog: realtime_project
 serverless: true
-root_path: /Workspace/Users/jessepepple36@gmail.com/Azure_Streaming_Data_Engineering_Project_With_SDP/realtimestreaming_project/prod/files/src/Gold_Pipeline_/transformations
+root_path: ../../src/Gold_Pipeline_/transformations
