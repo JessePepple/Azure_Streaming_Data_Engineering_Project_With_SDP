@@ -3,7 +3,7 @@ pipeline_type: WORKSPACE
 name: Silver_Pipeline
 libraries:
   - glob:
-      include: ../../src/Silver_Pipeline_/transformations/**
+      include: ../../src/Silver_Pipeline/transformations/**
 schema: silver
 continuous: false
 development: false
@@ -11,4 +11,4 @@ photon: true
 channel: CURRENT
 catalog: realtime_project
 serverless: true
-root_path: ../../src/Gold_Pipeline_/transformations/**
+root_path: ../../src/Silver_Pipeline/transformations/**
