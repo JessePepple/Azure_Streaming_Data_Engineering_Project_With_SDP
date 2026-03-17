@@ -25,6 +25,13 @@ targets:
     default: true
     workspace:
       host: https://adb-2980095041369830.10.azuredatabricks.net
+    permissions:
+      - group_name : admins
+        level : CAN_MANAGE
+    presets:
+      name_prefix: ${workspace.current_user.short_name}
+      source_linked_deployment : false
+    
     variables:
       catalog: realtime_project
       schema: ${workspace.current_user.short_name}
