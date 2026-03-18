@@ -1,5 +1,10 @@
 # Azure_Streaming_Data_Engineering_Project_With_SDP_And_CI/CD
 
+## Project Structure
+Databricks notebooks and pipeline configurations are located in realtimestreaming_project/ and deployed via Databricks Asset Bundles. The databricks.yml file defines the bundle configuration for Dev → Test → Prod promotion. ADF pipeline artefacts are in pipeline/, dataset/, and linkedService/.
+This project represents an architectural step forward from the Music Streaming and Sales projects — introducing Spark Declarative Pipelines, a dual-consumer Gold layer (OBT for ML/data science workloads alongside a star schema for analytics), and REST API ingestion with real-time streaming via Databricks Auto Loader.
+
+
 For detailed overview visit this link => https://www.jesseportfolio.co.uk/post/azure-data-engineering-streaming-project-with-sdp-ci-cd 
 
 
