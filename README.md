@@ -1,4 +1,4 @@
-# Azure_Streaming_Data_Engineering_Project_With_SDP
+# Azure_Streaming_Data_Engineering_Project_With_SDP_And_CI/CD
 
 For detailed overview visit this link => https://www.jesseportfolio.co.uk/post/azure-data-engineering-streaming-project-with-sdp-ci-cd 
 
