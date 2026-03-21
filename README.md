@@ -178,6 +178,15 @@ Result Statement:
 Built a fully automated Gold layer using Spark Declarative Pipelines, sourcing from the Silver OBT. Dimension tables were implemented with SCD Type 2, and the fact table with SCD Type 1, while automated CDC flows captured both operational and historical changes. Data quality expectations were enforced to ensure accuracy, and finalized datasets were loaded into the SQL Data Warehouse with Z-ordering applied for optimized query performance, delivering analytics-ready, fully up-to-date tables for downstream consumers. Data Analysts have the option to use this curated star schema or use the OBT in the silver layer offering flexibility
 
 
+## Unit Testings 
+
+Before deploying our Asset Bundles I utilised unit testing in Databricks to validate our class function it returned correctly with no issues
+<img width="1239" height="679" alt="Screenshot 2026-03-21 at 23 08 55" src="https://github.com/user-attachments/assets/19c80c16-0500-4ee1-bbef-25a781daa2da" />
+<img width="1239" height="679" alt="Screenshot 2026-03-21 at 23 09 03" src="https://github.com/user-attachments/assets/4c806438-0305-4539-b2aa-8b0c9f5e36b9" />
+
+
+
+
 ## Databricks SQL Warehouse
 
 I validated the curated datasets in the Databricks SQL Warehouse and then created sample dashboards to showcase the usability and analytical value of the curated data(Please note the indicator START AT and END AT is for SCD TYPE 2 for our data history tracking).
